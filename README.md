@@ -30,17 +30,7 @@
 
 ---
 
-## Installation
-
-To use `js-app-cli`, make sure you have Node.js installed on your system. Then, install the CLI globally:
-
-```bash
-npm install -g js-app-cli
-```
-
----
-
-## Usage
+## Installation & use
 
 Using `js-app-cli` is straightforward and interactive.
 
@@ -48,7 +38,7 @@ Using `js-app-cli` is straightforward and interactive.
 
 1. **Launch the CLI**:
    ```bash
-   js-app-cli
+   npm i js-app-cli
    ```
 
 2. **View Available Boilerplates**:
