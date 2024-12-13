@@ -1,6 +1,6 @@
 {
   "name": "js-app-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool to quickly initialize JavaScript boilerplate projects.",
   "main": "index.js",
   "bin": {
