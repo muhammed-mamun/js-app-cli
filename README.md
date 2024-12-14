@@ -9,7 +9,7 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Step-by-Step Guide](#step-by-step-guide)
+- [Step-by-Step Guide](#step-by-step-guide)
 - [Boilerplates](#boilerplates)
 - [Examples](#examples)
 - [Contributing](#contributing)
