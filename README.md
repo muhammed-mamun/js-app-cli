@@ -192,7 +192,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Developed with ❤️ by **Md. Mamun Hossain**.
 - **GitHub**: [Muhammed-Mamun](https://github.com/muhammed-mamun)
-- **Email**: mamun.cse08@gmail.com
+- **Email**: muhammed.mamun.131@gmail.com
 
 ---
 
