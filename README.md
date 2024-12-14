@@ -1,6 +1,6 @@
 # js-app-cli 🚀
 
-**js-app-cli** is a powerful Command-Line Interface (CLI) tool designed to simplify the process of initializing JavaScript boilerplate projects. It supports popular frameworks like Express and Next.js and helps developers set up projects quickly and efficiently.
+**js-app-cli** is a powerful Command-Line Interface (CLI) tool designed to simplify the process of initializing JavaScript boilerplate projects. It supports popular frameworks like Express and Next.js and allows users to use their own repositories for more flexibility.
 
 ---
 
@@ -9,7 +9,7 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Step-by-Step Guide](#step-by-step-guide)
+  - [Step-by-Step Guide](#step-by-step-guide)
 - [Boilerplates](#boilerplates)
 - [Examples](#examples)
 - [Contributing](#contributing)
@@ -22,17 +22,18 @@
 
 ## Features
 
-- ⚡ **Quick Project Setup**: Initialize your project with popular boilerplates in seconds.
+- ⚡ **Quick Project Setup**: Initialize your project with predefined or custom boilerplates in seconds.
 - 🔧 **Built-in Dependencies Installation**: Automatically installs dependencies for the selected boilerplate.
 - 🏢 **Custom Project Directory Support**: Choose where your project will be initialized.
 - 🎨 **Clean Git Repository**: Removes boilerplate Git history and initializes a fresh repository for your project.
+- 🌐 **Custom Repository Support**: Use your own Git repository to initialize projects.
 - 📈 **Expandable Framework Support**: Currently supports Express and Next.js with plans for more in the future.
 
 ---
 
 ## Installation
 
-To use `js-app-cli`, make sure you have Node.js installed on your system. Then, install the CLI globally:
+Install the CLI tool globally using npm:
 
 ```bash
 npm install -g js-app-cli
@@ -52,10 +53,11 @@ Using `js-app-cli` is straightforward and interactive.
    ```
 
 2. **View Available Boilerplates**:
-   The CLI will display a list of available boilerplates (e.g., Express, Next.js).
+   The CLI will display a list of available boilerplates (e.g., Express, Next.js) and an option to use your own repository.
 
-3. **Choose a Boilerplate**:
-   Enter the name of the desired boilerplate (e.g., `express` or `next`).
+3. **Choose a Boilerplate or Enter Your Repository**:
+   - Select a predefined boilerplate (e.g., `express` or `next`).
+   - Or, enter your custom Git repository URL.
 
 4. **Specify the Project Directory**:
    Provide the directory where your project should be created:
@@ -63,7 +65,7 @@ Using `js-app-cli` is straightforward and interactive.
    - Provide a relative or absolute path for a new directory.
 
 5. **Follow the Prompts**:
-   - The CLI will clone the selected boilerplate.
+   - The CLI will clone the selected boilerplate or custom repository.
    - Remove the existing Git history.
    - Install dependencies.
    - Initialize a new Git repository.
@@ -103,11 +105,11 @@ js-app-cli
 
 ```plaintext
 Available boilerplates:
-EXPRESS - by Foyzul Karim
-NEXT - by Remi Wg
+1. EXPRESS - A robust Node.js boilerplate for Express applications.
+2. NEXT - A comprehensive boilerplate for Next.js applications.
+3. Use your own repository
 
-Choose a boilerplate by name: express
-
+Choose an option by entering the corresponding number: 1
 You selected: EXPRESS
 Description: A robust Node.js boilerplate for Express applications.
 Author: Foyzul Karim
@@ -126,7 +128,7 @@ Navigate to your project directory:
   cd my-express-app
 ```
 
-### Example 2: Creating a Next.js Project
+### Example 2: Using a Custom Repository
 
 ```bash
 js-app-cli
@@ -134,27 +136,25 @@ js-app-cli
 
 ```plaintext
 Available boilerplates:
-EXPRESS - by Foyzul Karim
-NEXT - by Remi Wg
+1. EXPRESS - A robust Node.js boilerplate for Express applications.
+2. NEXT - A comprehensive boilerplate for Next.js applications.
+3. Use your own repository
 
-Choose a boilerplate by name: next
+Choose an option by entering the corresponding number: 3
+Enter your Git repository URL: https://github.com/your-username/your-repo.git
 
-You selected: NEXT
-Description: A comprehensive boilerplate for Next.js applications.
-Author: Remi Wg
-
-Enter the project directory (use . for the current directory): my-next-app
-Cloning the next boilerplate...
+Enter the project directory (use . for the current directory): custom-project
+Cloning the repository...
 Removing existing Git history...
 Installing dependencies...
 Initializing a new Git repository...
 Staging files...
 
-Enter a commit message: Initial commit for my Next.js app
+Enter a commit message: Initial commit for my custom project
 
 All set! 🚀
 Navigate to your project directory:
-  cd my-next-app
+  cd custom-project
 ```
 
 ---
@@ -208,3 +208,4 @@ Developed with ❤️ by **Md. Mamun Hossain**.
 
 If you encounter any issues or have suggestions, please feel free to open an issue or submit feedback on the [GitHub repository](https://github.com/muhammed-mamun/js-app-cli).
 
+---

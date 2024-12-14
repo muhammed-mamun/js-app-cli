@@ -3,19 +3,17 @@
 const { execSync } = require("child_process");
 const readline = require("readline");
 
-// Boilerplates configuration
+// Predefined boilerplates
 const boilerplates = {
   express: {
     url: "https://github.com/foyzulkarim/nodejs-boilerplate.git",
     description: "A robust Node.js boilerplate for Express applications.",
     author: "Foyzul Karim",
-    github: "https://github.com/foyzulkarim"
   },
   next: {
     url: "https://github.com/ixartz/Next-js-Boilerplate.git",
     description: "A robust Next.js boilerplate for Next applications.",
     author: "Remi Wg",
-    github: "https://github.com/ixartz"
   },
 };
 
@@ -35,31 +33,45 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// Display boilerplate list
+// Display options
 console.log("\nAvailable boilerplates:");
 Object.keys(boilerplates).forEach((key, index) => {
-  console.log(`${key.toUpperCase()} - by ${boilerplates[key].author}`);
+  console.log(`${index + 1}. ${key.toUpperCase()} - ${boilerplates[key].description}`);
 });
-console.log(`\n`);
+console.log(`\n${Object.keys(boilerplates).length + 1}. Use your own repository\n`);
 
 // Prompt the user for their choice
-rl.question("Choose a boilerplate by name: ", (choice) => {
-  const selected = boilerplates[choice.toLowerCase()];
-  if (!selected) {
+rl.question("Choose an option by entering the corresponding number: ", (choice) => {
+  const selectedIndex = parseInt(choice, 10);
+  if (selectedIndex === Object.keys(boilerplates).length + 1) {
+    // Custom repository option
+    rl.question("Enter your Git repository URL: ", (repoUrl) => {
+      if (!repoUrl.startsWith("https://") && !repoUrl.startsWith("git@")) {
+        console.error("Invalid Git repository URL. Exiting.");
+        rl.close();
+        process.exit(1);
+      }
+
+      proceedWithRepository(repoUrl);
+    });
+  } else if (selectedIndex > 0 && selectedIndex <= Object.keys(boilerplates).length) {
+    // Predefined boilerplate
+    const selected = Object.values(boilerplates)[selectedIndex - 1];
+    console.log(`You selected: ${selected.description}`);
+    proceedWithRepository(selected.url);
+  } else {
     console.error("Invalid choice! Exiting.");
     rl.close();
     process.exit(1);
   }
+});
 
-  console.log(`\nYou selected: ${choice.toUpperCase()}`);
-  console.log(`Description: ${selected.description}`);
-  console.log(`Author: ${selected.author}\n`);
-
+const proceedWithRepository = (repoUrl) => {
   rl.question("Enter the project directory (use . for the current directory): ", (input) => {
     const projectDir = input === "." ? process.cwd() : input;
 
-    console.log(`Cloning the ${choice} boilerplate...`);
-    runCommand(`git clone ${selected.url} ${projectDir}`);
+    console.log(`Cloning the repository...`);
+    runCommand(`git clone ${repoUrl} ${projectDir}`);
 
     console.log("Removing existing Git history...");
     runCommand("rm -rf .git", projectDir);
@@ -82,4 +94,4 @@ rl.question("Choose a boilerplate by name: ", (choice) => {
       rl.close();
     });
   });
-});
+};
