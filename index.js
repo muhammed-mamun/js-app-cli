@@ -17,7 +17,7 @@ const boilerplates = {
   },
 };
 
-//function to execute shell commands
+// Function to execute shell commands
 const runCommand = (command, cwd = process.cwd()) => {
   try {
     execSync(command, { stdio: "inherit", cwd });
@@ -38,13 +38,12 @@ console.log("\nAvailable boilerplates:");
 Object.keys(boilerplates).forEach((key, index) => {
   console.log(`${index + 1}. ${key.toUpperCase()} - ${boilerplates[key].description}`);
 });
-console.log(`\n${Object.keys(boilerplates).length + 1}. Use your own repository\n`);
+console.log(`\nJust press ENTER to use your own repository\n`);
 
 // Prompt the user for their choice
 rl.question("Choose an option by entering the corresponding number: ", (choice) => {
-  const selectedIndex = parseInt(choice, 10);
-  if (selectedIndex === Object.keys(boilerplates).length + 1) {
-    // Custom repository option
+  if (!choice.trim()) {
+    // Empty input, assume custom repository
     rl.question("Enter your Git repository URL: ", (repoUrl) => {
       if (!repoUrl.startsWith("https://") && !repoUrl.startsWith("git@")) {
         console.error("Invalid Git repository URL. Exiting.");
@@ -54,15 +53,18 @@ rl.question("Choose an option by entering the corresponding number: ", (choice) 
 
       proceedWithRepository(repoUrl);
     });
-  } else if (selectedIndex > 0 && selectedIndex <= Object.keys(boilerplates).length) {
-    // Predefined boilerplate
-    const selected = Object.values(boilerplates)[selectedIndex - 1];
-    console.log(`You selected: ${selected.description}`);
-    proceedWithRepository(selected.url);
   } else {
-    console.error("Invalid choice! Exiting.");
-    rl.close();
-    process.exit(1);
+    const selectedIndex = parseInt(choice, 10);
+    if (selectedIndex > 0 && selectedIndex <= Object.keys(boilerplates).length) {
+      // Predefined boilerplate
+      const selected = Object.values(boilerplates)[selectedIndex - 1];
+      console.log(`You selected: ${selected.description}`);
+      proceedWithRepository(selected.url);
+    } else {
+      console.error("Invalid choice! Exiting.");
+      rl.close();
+      process.exit(1);
+    }
   }
 });
 
@@ -85,7 +87,7 @@ const proceedWithRepository = (repoUrl) => {
     console.log("Staging files...");
     runCommand("git add .", projectDir);
 
-    rl.question("Enter a commit message (or press Enter for default 'init'): ", (commitMessage) => {
+    rl.question("Enter a commit message (press ENTER to use 'init'): ", (commitMessage) => {
       const finalMessage = commitMessage.trim() || "init";
       console.log("Committing files...");
       runCommand(`git commit -m "${finalMessage}"`, projectDir);
