@@ -17,7 +17,7 @@ const boilerplates = {
   },
 };
 
-// Helper function to execute shell commands
+//function to execute shell commands
 const runCommand = (command, cwd = process.cwd()) => {
   try {
     execSync(command, { stdio: "inherit", cwd });
@@ -85,9 +85,10 @@ const proceedWithRepository = (repoUrl) => {
     console.log("Staging files...");
     runCommand("git add .", projectDir);
 
-    rl.question("Enter a commit message: ", (commitMessage) => {
+    rl.question("Enter a commit message (or press Enter for default 'init'): ", (commitMessage) => {
+      const finalMessage = commitMessage.trim() || "init";
       console.log("Committing files...");
-      runCommand(`git commit -m "${commitMessage}"`, projectDir);
+      runCommand(`git commit -m "${finalMessage}"`, projectDir);
 
       console.log("All set! 🚀");
       console.log(`Navigate to your project directory:\n  cd ${projectDir}`);
